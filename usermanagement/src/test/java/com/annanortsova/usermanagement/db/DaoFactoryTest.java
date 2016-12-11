@@ -1,23 +1,24 @@
 package com.annanortsova.usermanagement.db;
 
+import org.junit.Before;
+import org.junit.Test;
+
 import junit.framework.TestCase;
 
+public class DaoFactoryTest extends TestCase {
 
+    @Before
+    public void setUp() throws Exception {
+        super.setUp();
+    }
 
-public class DaoFactoryTest  extends TestCase {
-
-	
-	public void testGetUserDao() {
-		try {
-			DaoFactory daoFactory  = DaoFactory.getInstance();
-			assertNotNull("DaoFactory instanse is null", daoFactory);
-			UserDao userDao = daoFactory.getUserDao();
-			assertNotNull("UserDao instance is null", userDao);
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-			fail(e.toString());
-			
-		}
-	}
+    @Test
+    public void testGetUserDao() {
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        assertNotNull("Dao Factory is null", daoFactory);
+        UserDao userDao = daoFactory.getUserDao();
+        assertNotNull("User Dao is null", userDao);
+        
+    }
 
 }
