@@ -1,49 +1,39 @@
 package com.annanortsova.usermanagement;
 
-import java.time.LocalDate;
-
-import org.junit.Before;
-import org.junit.Test;
+import java.util.Calendar;
+import java.util.Date;
 
 import junit.framework.TestCase;
 
-public class UserTest extends TestCase{
-    
-    private User user;
-    
-    private LocalDate dateOfBirthd;
+public class UserTest extends TestCase {
 
-    @Before
+    private User user;
+	private Date dateOfBirthday;
+
+    
     protected void setUp() throws Exception {
-        
         super.setUp();
-        
         user = new User();
         
-        dateOfBirthd = LocalDate.of(1941, 5, 24); 
-                
-        }
+       Calendar calendar = Calendar.getInstance();
+       calendar.set(1996, Calendar.NOVEMBER, 6);
+       dateOfBirthday = calendar.getTime();
+        
+    }
 
-    @Test 
+    
     public void testGetFullName() {
-        
-        user.setFirstName("Ann");
-        user.setLastName("Nortsova");
-        
-        assertEquals("Nortsova, Ann",  user.getFullName());
-        
-        }
-
-    @Test 
+        user.setFirstName("John");
+        user.setLastName("annanortsova");
+        assertEquals("annanortsova, John", user.getFullName());
+    }
+    
+    
     public void testGetAge() {
-
-        user.setDateOfBirthd(dateOfBirthd);
+       
+        user.setDateOfBirthday(dateOfBirthday);
+        assertEquals(2016 - 1996, user.getAge());
         
-        int correctAnswer = LocalDate.now().getYear()-dateOfBirthd.getYear();
-        
-        assertEquals(correctAnswer, user.getAge());
-        
-        }
-
+    }
 
 }
